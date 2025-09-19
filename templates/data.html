@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="d-flex justify-content-between align-items-center mb-3">
+  <h2 class="m-0">Dataset Preview</h2>
+  <div class="d-flex gap-2">
+    <form method="post" class="d-flex gap-2">
+      <input class="form-control" type="number" min="1" step="50" name="rows" placeholder="Rows (e.g., 100)" style="max-width: 200px;">
+      <input type="hidden" name="action" value="append">
+      <button type="submit" class="btn btn-success">Append Rows</button>
+    </form>
+    <form method="post" class="d-flex gap-2">
+      <input class="form-control" type="number" min="100" step="50" name="rows" placeholder="Rows (e.g., 500)" style="max-width: 200px;">
+      <input type="hidden" name="action" value="generate">
+      <button type="submit" class="btn btn-outline-primary">Generate New Dataset</button>
+    </form>
+    <a class="btn btn-outline-secondary" href="{{ url_for('data_download') }}">Download CSV</a>
+  </div>
+ </div>
+
+ <div class="table-responsive">
+   <table class="table table-striped table-bordered align-middle">
+     <thead class="table-dark">
+       <tr>
+         {% for c in columns %}<th>{{ c }}</th>{% endfor %}
+       </tr>
+     </thead>
+     <tbody>
+       {% for r in rows %}
+         <tr>
+           {% for c in columns %}
+             <td>{{ r[c] }}</td>
+           {% endfor %}
+         </tr>
+       {% endfor %}
+     </tbody>
+   </table>
+ </div>
+{% endblock %}
+
+
