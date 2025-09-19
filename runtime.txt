@@ -1,2 +1,2 @@
 python==3.11.9
-pandas==2.2.3
+pandas==2.2.2
